@@ -1,0 +1,48 @@
+Problem Statement
+Given two integers n and r, find nCr (Combination)
+
+Example 1:
+Input: n = 3, r = 2
+Output: 3
+Explaination: 3C2 = 3. 
+Example 2:
+Input: n = 4, r = 4
+Output: 1
+Constraints:
+1 ≤ n, r ≤ 20
+
+solution 
+
+public class Solution {
+   public static int nCr(int n, int r) {
+    //manipulation
+    // Base cases
+        if (n < r || n == 0) {
+            return 0;
+        }
+        if (r == 0 || n == r) {
+            return 1;
+        }
+    int newdenominator=n-r;
+    int finaldenominator=(newdenominator<r)?newdenominator:r;
+    //System.out.println(n);
+    //System.out.println(finaldenominator);
+        long numerator1=findnumerator(n,finaldenominator);
+        long denominator2=finddenominator(finaldenominator);
+        return (int)(numerator1/denominator2);
+    }
+   static long findnumerator(int n,int r){
+     long result=1;
+     for(long i=n;i>n-r;i--){
+          result*=i;
+     }  
+     return result;
+    }
+    static long finddenominator(int r){
+     long result=1;
+     for(long i=r;i>0;i--){
+          result*=i;
+     }  
+     return result;
+    }
+}

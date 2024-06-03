@@ -1,0 +1,38 @@
+Problem Statement
+Given a string S, check if it is palindrome or not.
+
+Example 1:
+Input: S = "racecar"
+Output: 1
+Explanation: S is a palindrome
+Example 2:
+Input: S = "adr" 
+Output: 0
+Explanation: S is not a palindrome
+Constraints:
+0 <= Length of S <= 2*105
+
+public class Solution
+{ 
+    public static boolean isPalindrome(String str)
+    {
+        String s=str;
+        int l=0;
+        int r=s.length()-1;
+        return isPalindromehelper(s,l,r);
+            
+        
+    }
+    static boolean isPalindromehelper(String s,int l,int r){
+        if(l>=r) return true;
+        if(l<r){
+            if(s.charAt(l)==s.charAt(r)) {
+                return isPalindromehelper(s,l+1,r-1);
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+}

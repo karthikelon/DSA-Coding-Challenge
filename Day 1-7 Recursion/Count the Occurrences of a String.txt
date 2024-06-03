@@ -1,0 +1,44 @@
+Count the Occurrences of a String
+String
+Recursion
+
+Problem Statement
+Create a function that counts the number of times a string (str2) appears in another string (str1).
+
+Example 1:
+Input : 
+str1 = "hello world, hello universe"
+str2 = 'hello'
+
+Output :
+2
+
+Explanation:
+'hello' appears two times in str1.
+Example 2:
+Input : 
+str1 = "hello"
+str2 = 'hi'
+
+Output : 
+0
+
+Explanation: 
+'hi' didn't appears in str1.
+Constraints:
+1 <= str1.length(), str2.length() <= 10^6.
+
+str1 and str2 can contain lowercase, uppercase alphabet, numbers, and special characters.
+
+public class Solution {
+    public static int count(String text, String word) {
+       int count=0;
+       for(int i=0;i<=(text.length()-word.length());i++){
+           
+           if(text.substring(i,i+word.length()).equals(word)){
+               count++;
+           }
+       }
+    return count;
+}
+}

@@ -1,0 +1,42 @@
+Problem Statement
+Given a string, write a program to output every non-empty substring of the given string in a Lexographically sorted order.
+
+ 
+
+Note: Here we will not consider an empty string as the subset of a String
+
+Example 1:
+Input: s = abc
+Output: [a, ab, abc, ac, b, bc, c] 
+Example 2:
+Input: s = ab
+Output: [a, ab, b] 
+Constraints:
+1 <= s.length <= 10
+A <= s[i] <= Z
+All the characters of the given String are unique.
+
+solution 
+import java.util.*;
+public class Solution {
+
+    public static List<String> findSubstrings(String s) {
+       List<String>solution=new ArrayList<>();
+       findSubstringshelper(s,0,"",solution);
+       Collections.sort(solution);
+        solution.removeAll(Arrays.asList(""));
+       return solution;
+    }
+
+    public static void findSubstringshelper(String text, int i,String s, List<String>solution){
+     
+      if(i==text.length()){
+          
+            solution.add(s);
+            return;
+      }
+      findSubstringshelper(text,i+1,s+text.charAt(i),solution);
+      findSubstringshelper(text,i+1,s,solution);
+      
+    }
+}
