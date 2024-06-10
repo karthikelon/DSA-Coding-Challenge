@@ -30,6 +30,8 @@ Constraints:
 
 str1 and str2 can contain lowercase, uppercase alphabet, numbers, and special characters.
 
+
+
 public class Solution {
     public static int count(String text, String word) {
        int count=0;

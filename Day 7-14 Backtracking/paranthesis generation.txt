@@ -1,0 +1,38 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    int n=3;
+		List<String>st=new ArrayList<>();
+		st.addAll(AllParenthesis(n));
+		for(String s:st){
+		    System.out.println(s);
+		}
+	}
+	public static List<String> AllParenthesis(int n) {
+        
+        List<String>st=new ArrayList<>();
+        generatebracket("",0,0,n,st);
+        return st;
+      
+    }
+	public static void generatebracket(String st,int open,int close,int n,List<String> solution){
+	    if(open==n&&close==n){
+	        String s1=st;
+	        solution.add(s1);
+	        //System.out.println(st);
+	        return;
+	    }
+	    if(open<n){
+	        
+	        generatebracket(st+'(',open+1,close,n,solution);
+	        }
+	     
+	    if(open>close){
+	        
+	        generatebracket(st+')',open,close+1,n,solution);
+	        
+	    } 
+	} 
+}
+  

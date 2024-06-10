@@ -1,0 +1,79 @@
+//array arraypermutation
+
+simpler way 
+public class Main
+{
+	public static void main(String[] args) {
+		
+		int arr[]={1,2,3,4};
+		arraypermutation(arr,0,arr.length-1);
+	}
+	
+	public static void arraypermutation(int arr[],int l,int r){
+	    if(l==r){
+	        printarray(arr);
+	        return; 
+	    }
+	    for(int i=l;i<arr.length;i++){
+	        swap(arr,i,l);
+	        arraypermutation(arr,l+1,r);
+	        swap(arr,i,l);
+	    }
+	}
+	public static void printarray(int arr[]){
+	    for(int x:arr){
+	        System.out.print(x);
+	    }
+	    System.out.println();
+	}
+	public static void swap(int arr[],int l,int r){
+	    int temp=arr[l];
+	    arr[l]=arr[r];
+	    arr[r]=temp;
+	}
+}
+
+using arraylist need abit of modification.
+
+public class Main
+{
+	public static void main(String[] args) {
+		int numbers={2,3,5,9};
+		
+		List<List<Integer>>s1 =new ArrayList<>();
+		s1.addAll(permute(numbers));
+		for(int x:s1){
+		    System.out.print(s1);
+		}
+		
+	}
+	public List<List<Integer>>permute(int[] nums){
+	    
+		List<Integer> larray=new ArrayList<>();
+		for(int x:nums){
+		    larray.add(x);
+		}
+		List<List<Integer>>solution =new ArrayList<>();
+	    permutehelper(0,nums.length,larray,List<List<Integer>>solution);
+	    return solution;
+	     
+	}
+	public void permutehelper(int x,int y,List<Integer>temp,List<List<Integer>>solution){
+	    if(x==y){
+	        solution.add(temp);
+	        return;
+	    }
+	    for(int i=x;i<temp.length()-1;i++){
+	        swap(x,y,temp);
+	        permutehelper(x+1,y,temp,solution);
+	        swap(x,y,temp);
+	    }
+ 
+	}
+	public void swap(int x,int y,List<Integer>list){
+	    int temp=list[x];
+	    list[x]=list[y];
+	    list[y]=temp;
+	}
+	
+}
