@@ -1,0 +1,30 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    String s1="abc";
+	    String s2="cba";
+	    List<String>container=new ArrayList<>();
+		allSubsequnce(s1,"",container,0);
+		allSubsequnce(s2,"",container,0);
+		for(String x:container){
+		    System.out.print(x+" ");
+		}
+	}
+	public static void allSubsequnce(String given,String solution,List<String>container,int counter){
+	    if(counter==given.length()){
+	        container.add(solution);
+	        return;
+	    }
+	    allSubsequnce(given,solution,container,counter+1);
+	    allSubsequnce(given,solution+given.charAt(counter),container,counter+1);
+	}
+	
+}

@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        String originalString = "abc";
+        StringBuilder sb1 = new StringBuilder(originalString);
+        List<StringBuilder> solution = new ArrayList<>();
+        arrayPermutation(sb1, 0, solution);
+        for (StringBuilder x : solution) {
+            System.out.print(x + " ");
+        }
+    }
+
+    public static void arrayPermutation(StringBuilder given, int start, List<StringBuilder> solution) {
+        if (start == given.length()) {
+            
+            solution.add(new StringBuilder(given)); 
+            return;
+        }
+        for (int i = start; i < given.length(); i++) {
+            swap(given, start, i);
+            arrayPermutation(given, start + 1, solution);
+            swap(given, start, i);
+        }
+    }
+
+    public static void swap(StringBuilder given, int x, int y) {
+        char temp1=given.charAt(x);
+        char temp2=given.charAt(y);
+        given.setCharAt(x, temp2);
+        given.setCharAt(y, temp1);
+    }
+}
+
+mistake which i should not repeat
+The issue in your code lies in the arrayPermutation method. When you add given to the solution list, you're actually adding a reference to the same StringBuilder object every time. Since StringBuilder is mutable, when you modify given in subsequent iterations, the modifications are reflected in all references to the same StringBuilder object in the solution list. Therefore, you end up with the same permutations repeated multiple times.

@@ -1,0 +1,44 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		List<String> solution=new ArrayList<>();
+		solution.addAll(letterCombinations ("232"));
+		for(String x:solution){
+		    System.out.print(x+" ");
+		}
+	}
+	
+	public static List<String> letterCombinations (String str){
+	    List<String> solution=new ArrayList<>();
+	    letterCombinationshelper (str,0,solution ,"");
+	    return solution;
+	    
+	}
+	public static void letterCombinationshelper (String str,int len,List<String>solution ,String creation){
+	   //System.out.println("inside the helper with length"+len);
+	    if(len==str.length()){
+	        String value=creation;
+	        solution.add(value);
+	        return ;
+	    }
+	    
+	    if(str.charAt(len)=='2'){
+	       letterCombinationshelper (str,len+1,solution,creation+'a');
+	       letterCombinationshelper (str,len+1,solution,creation+'b');
+	       letterCombinationshelper (str,len+1,solution,creation+'c');
+	    }
+	    if(str.charAt(len)=='3'){
+	       letterCombinationshelper (str,len+1,solution,creation+'d');
+	       letterCombinationshelper (str,len+1,solution,creation+'e');
+	       letterCombinationshelper (str,len+1,solution,creation+'f');
+	    }
+	}
+}

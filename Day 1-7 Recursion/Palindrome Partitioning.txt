@@ -1,0 +1,80 @@
+Palindrome Partitioning
+String
+Backtracking
+AmazonDE ShawMicrosoftVisa
+Problem Statement
+Given a string s, a partitioning of the string is a palindrome partitioning if every sub-string of the partition is a palindrome. Return all possible palindrome partitioning of s.
+
+Example 1:
+Input:
+"nnwesipil"
+Output:
+[["n", "n", "w", "e", "s", "i", "p", "i", "l"], 
+["n", "n", "w", "e", "s", "ipi", "l"],
+["nn", "w", "e", "s", "i", "p", "i", "l"],
+["nn", "w", "e", "s", "ipi", "l"]]
+Example 2:
+Input:
+
+"aab"
+
+Output:
+
+[["a", "a", "b"],
+
+["aa", "b"]]
+
+Constraints:
+1 <= n <= 15
+
+
+solution for solving a easier problem where first i find all subsequence which are palindrome then store in list and print it
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		List<String>solution=new ArrayList<>();
+		String s="malylam";
+		solution=partition(s);
+		 for(int i=0;i<solution.size();i++){
+          
+            System.out.print(solution.get(i)+" ");
+            
+        }
+	}
+	public static List<String> partition(String s)
+    {
+        //List<String>solution=new ArrayList<>();
+        Set<String> solution = new HashSet<>();
+        int iteration=0;
+        partitionhelper(s,solution,iteration,"");
+       
+        return new ArrayList<>(solution);
+      
+    }
+    public static Set<String>partitionhelper(String s,Set<String>solution,int iteration,String tempStr){
+        if(iteration==s.length()){
+            if(isPalindrome(tempStr)&&!tempStr.isEmpty()){
+                solution.add(new String(tempStr));
+            }
+            
+            return solution;
+        }
+        
+        for(int i=0;i<s.length();i++){    
+            partitionhelper(s,solution,iteration+1,tempStr);
+            partitionhelper(s,solution,iteration+1,tempStr+s.charAt(iteration));
+        }
+        return solution;
+    }
+    
+    public static boolean isPalindrome(String s){
+        for(int i=0;i<s.length()/2;i++){
+            if(s.charAt(i)!=s.charAt(s.length()-i-1)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+}

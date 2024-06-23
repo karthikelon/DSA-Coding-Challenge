@@ -77,3 +77,34 @@ public class Main
 	}
 	
 }
+other way 
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        int arr[] = {1, 2, 3};
+        List<int[]> solution = new ArrayList<>();
+        arrayPermutation(arr, 0, solution);
+        for (int[] subArray : solution) {
+            System.out.print(Arrays.toString(subArray) + " ");
+        }
+    }
+
+    public static void arrayPermutation(int arr[], int start, List<int[]> solution) {
+        if (start == arr.length) {
+            solution.add(arr.clone()); // Clone the array to avoid reference issues
+            return;
+        }
+        for (int i = start; i < arr.length; i++) {
+            swap(arr, start, i);
+            arrayPermutation(arr, start + 1, solution);
+            swap(arr, start, i);
+        }
+    }
+
+    public static void swap(int arr[], int x, int y) {
+        int temp = arr[x];
+        arr[x] = arr[y];
+        arr[y] = temp;
+    }
+}

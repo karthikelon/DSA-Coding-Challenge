@@ -1,0 +1,54 @@
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    int mat[][]={
+            {1,1,1,1},
+            {1,0,1,1},
+            {1,1,0,0},
+            {1,1,1,1},
+            
+        };
+         
+        int n=mat.length;
+        int m=mat[0].length;
+        
+        boolean visited[][]=new boolean[n][m];
+        visited[0][0]=true;
+        ratInAMaze(0,0,mat,"",visited,n,m);
+	}
+	
+	public static boolean isvalid(int x,int y,int mat[][],boolean visited[][],int n,int m){
+	    if(x>=0 && x<n && y>=0 && y<m &&!visited[x][y] &&mat[x][y]==1){
+	        return true;
+	    }
+	    return false;
+	}
+	public static void ratInAMaze(int x,int y,int mat[][],String path,boolean visited[][],int n,int m){
+	    
+	    if(x==n-1&& y==m-1){
+	        System.out.println(path);
+	        return;
+	    }
+	    if(isvalid(x+1,y,mat,visited,n,m)){//down
+	        visited[x+1][y]=true;
+	        ratInAMaze(x+1,y,mat,path+'D',visited,n,m);
+	        visited[x+1][y]=false;
+	    }
+	    if(isvalid(x,y-1,mat,visited,n,m)){//left
+	        visited[x][y-1]=true;
+	        ratInAMaze(x,y-1,mat,path+'L',visited,n,m);
+	        visited[x][y-1]=false;
+	    }
+	    if(isvalid(x,y+1,mat,visited,n,m)){//right
+	        visited[x][y+1]=true;
+	        ratInAMaze(x,y+1,mat,path+'R',visited,n,m);
+	        visited[x][y+1]=false;
+	    }
+	    if(isvalid(x-1,y,mat,visited,n,m)){//up
+	        visited[x-1][y]=true;
+	        ratInAMaze(x-1,y,mat,path+'U',visited,n,m);
+	        visited[x-1][y]=false;
+	    }
+	}
+}
